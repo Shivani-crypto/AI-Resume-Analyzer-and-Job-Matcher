@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Extracted Text - AI Resume Analyzer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header small-header">
+            <h1><i class="fa-solid fa-file-lines"></i> Extracted Resume Text</h1>
+        </header>
+
+        <main class="dashboard">
+            <section class="card glass-panel w-full">
+                <div class="text-container">
+                    {% if text %}
+                        <pre class="extracted-text">{{ text }}</pre>
+                    {% else %}
+                        <div class="empty-state">
+                            <i class="fa-solid fa-box-open"></i>
+                            <p>No text found or extraction failed.</p>
+                        </div>
+                    {% endif %}
+                </div>
+                
+                <div class="action-bar">
+                    <a href="/" class="btn btn-outline"><i class="fa-solid fa-arrow-left"></i> Back to Dashboard</a>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

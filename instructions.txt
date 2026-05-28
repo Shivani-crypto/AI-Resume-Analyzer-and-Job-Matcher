@@ -1,0 +1,46 @@
+resume_analyzer/
+│
+├── app.py
+├── requirements.txt
+├── static/
+│   └── style.css
+├── templates/
+│   ├── index.html
+│   ├── result.html
+│
+├── utils/
+│   ├── extractor.py
+│   ├── skills.py
+│   ├── matcher.py
+│   ├── ai_helper.py
+│
+├── uploads/
+
+
+
+===============================
+pip install flask pdfplumber python-docx pytesseract pillow matplotlib scikit-learn
+===============================================
+Upload Resume
+   ↓
+Store File
+   ↓
+Click "Extract Text"
+   ↓
+Extract Text
+   ↓
+Show Extracted Text
+   ↓
+AI Suggestions
+   ↓
+Enter Job Description
+   ↓
+Compare Resume vs JD
+   ↓
+Show:
+   - Score
+   - Missing Skills
+   - Suggestions
+   - Pie Chart
+   ↓
+Generate Interview Questions

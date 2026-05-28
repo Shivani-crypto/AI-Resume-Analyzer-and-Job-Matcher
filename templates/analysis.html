@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block title %}Analysis Result - AI Resume Analyzer{% endblock %}
+
+{% block content %}
+<header class="app-header small-header">
+    <h1><i class="fa-solid fa-chart-pie"></i> Match Analysis Report</h1>
+    <p>Comprehensive overview of resume vs. job requirements.</p>
+</header>
+
+<div class="action-bar top-actions">
+    <a href="/analyze_page" class="btn btn-outline"><i class="fa-solid fa-arrow-left"></i> New Analysis</a>
+    <a href="/download" class="btn btn-primary"><i class="fa-solid fa-download"></i> Download PDF Report</a>
+</div>
+
+
+<main class="analysis-grid">
+    <!-- Score Card -->
+    <div class="card glass-panel text-center score-card">
+        <h2>Match Score</h2>
+        <div class="score-circle" style="background: conic-gradient(var(--success) {{ score }}%, #edf2f7 0);">
+            <span class="score-value">{{ score }}%</span>
+        </div>
+    </div>
+
+    <!-- Visualization -->
+    <div class="card glass-panel chart-card text-center">
+        <h2>Match Visualization</h2>
+        <img src="{{ url_for('static', filename=chart) }}" alt="Match Chart" class="responsive-chart">
+    </div>
+
+    <!-- Skills -->
+    <div class="card glass-panel skills-card col-span-full">
+        <div class="skills-section">
+            <h3 class="success-text"><i class="fa-solid fa-check-circle"></i> Matched Skills</h3>
+            <ul class="tag-list">
+            {% for skill in resume_skills %}
+                <li class="tag matched">{{ skill }}</li>
+            {% endfor %}
+            </ul>
+        </div>
+        <hr class="divider">
+        <div class="skills-section">
+            <h3 class="danger-text"><i class="fa-solid fa-xmark-circle"></i> Missing Skills</h3>
+            <ul class="tag-list">
+            {% for skill in missing_skills %}
+                <li class="tag missing">{{ skill }}</li>
+            {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <!-- AI Suggestions -->
+    <div class="card glass-panel ai-card col-span-full">
+        <h2><i class="fa-solid fa-lightbulb highlight"></i> AI Suggestions for Improvement</h2>
+        <div class="markdown-content">
+            {{ ai_suggestions | safe }}
+        </div>
+    </div>
+
+    <!-- Interview Questions -->
+    <div class="card glass-panel ai-card col-span-full">
+        <h2><i class="fa-solid fa-comments highlight"></i> Generated Interview Questions</h2>
+        <div class="markdown-content">
+            {{ interview_questions | safe }}
+        </div>
+    </div>
+
+    <!-- Jobs -->
+    <div class="card glass-panel col-span-full">
+        <h2><i class="fa-solid fa-briefcase"></i> Job Recommendations</h2>
+        <div class="job-links">
+            <a href="{{ job_links['LinkedIn'] }}" target="_blank" class="job-btn linkedin"><i class="fa-brands fa-linkedin"></i> LinkedIn Jobs</a>
+            <a href="{{ job_links['Indeed'] }}" target="_blank" class="job-btn indeed">Indeed Jobs</a>
+            <a href="{{ job_links['Naukri'] }}" target="_blank" class="job-btn naukri">Naukri Jobs</a>
+        </div>
+    </div>
+</main>
+{% endblock %}

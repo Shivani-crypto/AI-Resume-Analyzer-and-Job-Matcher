@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}Analyze Match - AI Resume Analyzer Pro{% endblock %}
+
+{% block content %}
+<header class="app-header small-header">
+    <h1><i class="fa-solid fa-wand-magic-sparkles"></i> Analyze Job Skills</h1>
+    <p>Match your extracted resume against a Job Description using Machine Learning.</p>
+</header>
+
+<main class="dashboard" style="grid-template-columns: 1fr; max-width: 800px; margin: 0 auto;">
+    <section class="card glass-panel w-full">
+        {% if error %}
+            <div class="empty-state">
+                <i class="fa-solid fa-triangle-exclamation" style="font-size: 3rem; color: var(--danger); margin-bottom: 1rem;"></i>
+                <p style="color: var(--danger); font-weight: 600;">{{ error }}</p>
+                <div style="margin-top: 2rem;">
+                    <a href="/extract_page" class="btn btn-primary">Go to Extract Text</a>
+                </div>
+            </div>
+        {% else %}
+            <form action="/analyze" method="POST" class="modern-form">
+                <div class="input-group">
+                    <label>Enter Job Description / Required Skills</label>
+                    <textarea name="job_desc" placeholder="e.g. We are looking for a Python developer with SQL experience, FastAPI, Golang..." class="modern-input" rows="8" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary w-full glow-btn" style="font-size: 1.2rem; padding: 1rem;">
+                    Run Machine Learning Analysis <i class="fa-solid fa-microchip"></i>
+                </button>
+            </form>
+        {% endif %}
+    </section>
+</main>
+{% endblock %}

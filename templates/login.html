@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - AI Resume Analyzer Pro</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container" style="max-width: 500px; margin-top: 10vh;">
+        <header class="app-header small-header">
+            <h1><i class="fa-solid fa-right-to-bracket"></i> Login</h1>
+            <p>Access your AI-powered job matching tools.</p>
+        </header>
+
+        <main class="dashboard" style="grid-template-columns: 1fr;">
+            <section class="card glass-panel w-full">
+                {% if error %}
+                <div class="tag missing" style="margin-bottom: 1rem; text-align: center;">{{ error }}</div>
+                {% endif %}
+                <form action="/login" method="POST" class="modern-form">
+                    <div class="input-group">
+                        <label>Email Address</label>
+                        <input type="email" name="email" class="modern-input" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Password</label>
+                        <input type="password" name="password" class="modern-input" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-full glow-btn">Login <i class="fa-solid fa-arrow-right"></i></button>
+                </form>
+                <div style="text-align: center; margin-top: 1.5rem;">
+                    <a href="/signup" style="color: var(--primary); font-weight: 600;">Don't have an account? Sign up</a>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

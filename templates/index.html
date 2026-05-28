@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - AI Resume Analyzer Pro{% endblock %}
+
+{% block content %}
+<header class="app-header">
+    <h1>Welcome, <span class="highlight">{{ name }}</span>!</h1>
+    <p>Let's find your perfect match. Upload your resume below.</p>
+</header>
+
+<main class="dashboard" style="grid-template-columns: 1fr;">
+    <!-- Step 1: Upload -->
+    <section class="card glass-panel w-full">
+        <div class="step-badge">Step 1</div>
+        <h2><i class="fa-solid fa-file-arrow-up"></i> Upload Resume</h2>
+        <form action="/upload" method="POST" enctype="multipart/form-data" class="modern-form">
+            <div class="file-drop-area">
+                <span class="file-msg">Drag & Drop or Click to Choose</span>
+                <input type="file" name="resume" class="file-input" required>
+            </div>
+            <button type="submit" class="btn btn-primary w-full glow-btn">Upload File <i class="fa-solid fa-cloud-arrow-up"></i></button>
+        </form>
+        
+        {% if current_file %}
+        <p style="text-align: center; margin-top: 15px; color: var(--success); font-weight: 600;">
+            <i class="fa-solid fa-check-circle"></i> File uploaded: {{ current_file }}
+        </p>
+        <div style="text-align: center; margin-top: 1rem;">
+            <a href="/extract_page" class="btn btn-outline">Go to Extract Text <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+        {% endif %}
+    </section>
+
+    <!-- Step 2: File Preview -->
+    {% if current_file %}
+    <section class="card glass-panel col-span-full">
+        <h2><i class="fa-solid fa-file-pdf"></i> Uploaded File Preview</h2>
+        <div style="width: 100%; height: 600px; border: 2px solid #e2e8f0; border-radius: 8px; overflow: hidden; background: #fff;">
+            <iframe src="{{ url_for('uploaded_file', filename=current_file) }}" width="100%" height="100%" style="border:none;"></iframe>
+        </div>
+    </section>
+    {% endif %}
+</main>
+{% endblock %}
