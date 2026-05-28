@@ -58,8 +58,8 @@ PDF Processing
 OCR (Tesseract)
 Installation
 Step 1: Clone the Repository
-git clone <repository_link>
-cd resume_analyzer
+git clone https://github.com/Shivani-crypto/AI-Resume-Analyzer-and-Job-Matcher
+cd AI-Resume-Analyzer-and-Job-Matcher
 Step 2: Install Required Packages
 pip install flask pdfplumber python-docx pytesseract pillow matplotlib scikit-learn
 Step 3: Run the Application
